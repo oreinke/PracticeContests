@@ -2,8 +2,8 @@ Easier problem set in total this session, more trivials. Need to practice typing
 
 Completed 8/10 in competition
 
-num 9 complete after
-num 10 in progress
+num 9 completed after
+num 10 completed after
 
 *Look into setting up custom starting doc in VScode. Standard is throwing rte for some reason lol
 
@@ -20,3 +20,5 @@ num 10 in progress
 ----------------------------------------------------------------------------------------------------------------------------
 9 - binary search? still haven't done but prof said so
 10 - Not math trick, dp involving holding history of 2 iterations. carefully check and re run logic. 2 hours wasted on missed math error.
+----------------------------------------------------------------------------------------------------------------------------
+9 - Interesting method to solve problems. will have to remeber for futures tricky problems. Basically use a educated guess at a realistic number and begin a binary search from that solution, checking the validity of of each guess until high and low are close enough for the exact, 20 whatever decimal point answer to not matter. In this instance, we needed 3 decimals points of precision, so when the diffrence was below .0001 we call it quits
