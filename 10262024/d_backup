@@ -1,0 +1,109 @@
+import java.util.*;
+
+public class d {
+    public static void main(String args[]) {
+        Scanner input = new Scanner(System.in);
+        int numCases = input.nextInt();
+        
+        while (numCases > 0) {
+            int n = input.nextInt();
+            int m = input.nextInt();
+
+            HashMap<Integer, HashSet<String>> rules = new HashMap<>();
+
+            while (m > 0) {
+                int a = input.nextInt();
+                int b = input.nextInt();
+                int c = input.nextInt();
+
+                String val;
+                if (a < b) {
+                    val = a + "," + b;
+                }
+                else {
+                    val = b + "," + a;
+                } 
+
+                if (!rules.containsKey(c)) {
+                    rules.put(c, new HashSet<>());
+                }
+                rules.get(c).add(val);
+                m--;
+            }
+        
+            ArrayList<HashSet<Integer>> memberShip = new ArrayList<>();
+            ArrayList<Integer> count = new ArrayList<>();
+            TreeMap<Integer, Integer> counts = new TreeMap<>(Collections.reverseOrder());
+            memberShip.add(new HashSet<>());
+            HashSet<Integer> hash1 = new HashSet<>();
+            hash1.add(1);
+            memberShip.add(hash1);
+            HashSet<Integer> hash2 = new HashSet<>();
+            hash2.add(2);
+            memberShip.add(hash2);
+            HashSet<Integer> hash3 = new HashSet<>();
+            hash3.add(1);
+            hash3.add(2);
+            memberShip.add(hash3);
+            count.add(0);
+            count.add(1);
+            count.add(1);
+            count.add(2);
+            counts.put(0, 1);
+            counts.put(1, 2);
+            counts.put(2, 1);
+            for (int i = 3; i <= n; i++) {
+                int size = memberShip.size();
+                for (int j = 0; j < size; j++) {
+                    boolean error = false;
+                    if (rules.containsKey(i)) {
+                        for (int mem1 : memberShip.get(j)) {
+                            if (error) {
+                                break;
+                            }
+                            for (int mem2 : memberShip.get(j)) {
+                                if (mem1 == mem2) {
+                                    continue;
+                                }
+                                String val;
+                                if (mem1 < mem2) {
+                                    val = mem1 + "," + mem2;
+                                }
+                                else {
+                                    val = mem2 + "," + mem1;
+                                }
+
+                                if (rules.get(i).contains(val)) {
+                                    error = true;
+                                    break;
+                                }
+
+                                val = mem1 + "," + i;
+                                if (rules.containsKey(mem2) && rules.get(mem2).contains(val)) {
+                                    error = true;
+                                    break;
+                                }
+
+                                val = mem2 + "," + i;
+                                if (rules.containsKey(mem1) && rules.get(mem1).contains(val)) {
+                                    error = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (!error) { //no rule conflict, new valid membership.
+                        HashSet<Integer> newMember = new HashSet<>(memberShip.get(j));
+                        newMember.add(i);
+                        int newCount = count.get(j) + 1;
+                        count.add(newCount);
+                        counts.put(newCount, counts.getOrDefault(newCount, 0) + 1);
+                    }
+                }
+            }  
+        System.out.println(counts.firstKey() + " " + (counts.get(counts.firstKey())));
+        numCases--;
+        }
+    }
+
+}

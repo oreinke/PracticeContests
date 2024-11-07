@@ -1,0 +1,45 @@
+import java.util.*;
+
+class k {
+    public static void main (String args[]) {
+        Scanner input = new Scanner(System.in);
+        int numCases = input.nextInt();
+
+        while (numCases > 0) {
+            int ser = input.nextInt();
+            int cas = input.nextInt();
+            int a = input.nextInt();
+            int b = input.nextInt();
+            int sessions = 0;
+            
+            boolean flag = false;
+            if (!compareFractions(ser, ser + 1, a, b)) {
+                System.out.println(-1);
+            }
+            else {
+                int num = 1;
+                while (ser < a) {
+                    while (compareFractions(ser, ser + num, a, b) && num <= cas) {
+                        num++;
+                    }
+                    num--;
+                    cas -= num;
+                    ser += num;
+                    sessions++;
+                }
+                sessions += cas / (b - a);
+                if (cas % (b - a) != 0)
+                    sessions++;
+
+                System.out.println(sessions);
+            }
+           
+            numCases--;
+        }
+    }
+
+    public static boolean compareFractions(int n1, int d1, int n2, int d2) {
+        return (n1 * d2 >= n2 * d1);
+            
+    }
+}
