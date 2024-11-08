@@ -1,0 +1,34 @@
+Comp Times (1:45)
+A - Failed
+B - 36
+C - 45
+D - Failed
+E - DNF
+F - DNA
+G - DNA
+H - DNA
+----------------------------------------------------------------------------
+Completed:
+A - Yes
+B - 36
+C - 45
+D - Yes
+E - No
+F - DNA
+G - DNA
+H - DNA
+----------------------------------------------------------------------------
+Overview - Still learning c++, especially maps n iterators, and struggling to read (glasses). Took lots of doc references and syntax, esp on E.
+Problems weren't crazy algorithmically, just struggling with implementation currently.
+A - Was using double for the distance and then just checking that 2 answers were within .001 of eachother, however we need to
+    instead use the pre-sqrt distance and store it in a long for accuracy.
+    Also missed the full output specifications, failing to apply an additional cosntraint (min y when newX = bestX).
+B - Sliding window problem. need to rememebr to continue processing, even if right hits end of array becuase of problems like this.
+C - Easy after key observation that the optimal strategy is just flip all 0 or all 1 segments,
+    any alternative strategy will be equivalent or worse. Flipping only half of 1 seg wont make senese,
+    and if we flip a series of segs in 1 flip, it at most can flip 2 segs to the correct orientation, 
+    as any already corrects segs will need to be corrected. this results in the move to flip + additonal new work, 
+    which will be equivalent or worse than our above solution.
+D - Prefix sum problem, given an array make a prefix sum of it and find the lowest index with value >= query.
+    Used an ordered map in my solution, as i was too lazy to implement a binary search and can't rememeber the C++ for it.
+    Missed query = 0 edge case, otherwise had correct sol
