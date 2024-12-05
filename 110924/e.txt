@@ -1,0 +1,41 @@
+import java.util.*;
+
+class e {
+    public static void main(String args[]) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        PriorityQueue<Integer> heights = new PriorityQueue<>();
+        HashMap<Integer, Integer> index = new HashMap<>();
+        long count = 0;
+
+        int num = input.nextInt();
+        index.put(num, 0);
+        heights.add(num);
+
+        for (int i = 1; i < n; i++) {
+            num = input.nextInt();
+            
+            int closest = -1;
+            for (int h : heights) {
+                if (h > num && index.get(h) > closest) {
+                    closest = index.get(h);
+                }
+            }
+            if (closest == -1) {
+                count += heights.size();
+            }
+            else {
+                count += i - closest; 
+            }
+
+
+            while (!heights.isEmpty() && heights.peek() < num) {
+                index.remove(heights.poll());
+            }
+            heights.add(num);
+            index.put(num, i);
+        }
+
+        System.out.println(count);
+    }
+}

@@ -1,4 +1,5 @@
 import java.util.*;
+import javax.swing.text.TabableView;
 
 public class prob9 
 {
@@ -25,7 +26,7 @@ public class prob9
                     max = rows[i];
                 }
             }
-
+                
             double low = 0.0;
             double high = max;
 
@@ -63,8 +64,6 @@ public class prob9
             return false;
         }
 
-        
-        
         int numTreesConsumed = (int) ((rows[step] - spacing) / spacing);
         // System.out.printf("%d trees can be planted in row %d of size %f with spacing %f\n", numTreesConsumed, step, rows[step], spacing);
 
