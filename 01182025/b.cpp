@@ -11,8 +11,34 @@ int main() {
     while (t--) {
         int n; cin >> n;
         vi cakes(n);
-        for (auto &x : cakes) cin >> x;
-        vector<ull> pre(n), suf(n + 1);
+        ull total = 0;
+        for (auto &x : cakes) {
+            cin >> x;
+            total += x;
+        } 
+        
+        int turns = n / 2 - 1;
+        ull elsie = 0;
+        for (int i = 0; i < turns; i++) {
+            elsie += cakes[i];
+        }
+        turns--;
+        int end = n - 1;
+        ull curEls = elsie;
+        while (turns >= 0) {
+            curEls -= cakes[turns];
+            curEls += cakes[end];
+            elsie = max(elsie, curEls);
+            turns--;
+            end--;
+        }
+        cout << total - elsie << " " << elsie << endl;
+
+
+
+
+
+        /*vector<ull> pre(n), suf(n + 1);
         pre[0] = cakes[0];
         suf[n] = 0;
         suf[n - 1] = cakes[n - 1];
@@ -31,6 +57,6 @@ int main() {
             elise = max(elise, pre[i] + suf[n - (turns - (i + 1))]);
         } 
         elise = max(elise, suf[n - turns]);
-        cout << (total - elise) << " " << elise << endl;
+        cout << (total - elise) << " " << elise << endl; */
     }
 }
